@@ -71,7 +71,7 @@ angular.module('oi.select')
 
                 var inputElement        = element.find('input'),
                     listElement         = angular.element(element[0].querySelector('.select-dropdown')),
-                    placeholder         = placeholderFn(scope),
+                    placeholder         = placeholderFn(scope) || attrs.placeholder || '',
                     multiplePlaceholder = multiplePlaceholderFn(scope),
                     listPlaceholder     = listPlaceholderFn(scope),
                     elementOptions      = optionsFn(scope.$parent) || {},
@@ -205,7 +205,7 @@ angular.module('oi.select')
 
                     //length less then minlength
                     if (String(inputValue).length < options.minlength) return;
-                    
+
                     //We don't get matches if nothing added into matches list
                     if (inputValue !== oldValue && (!scope.oldQuery || inputValue) && !matchesWereReset) {
                         listElement[0].scrollTop = 0;
@@ -473,7 +473,7 @@ angular.module('oi.select')
                 function click(event) {
                     //query length less then minlength
                     if (scope.query.length < options.minlength) return;
-                    
+
                     //option is disabled
                     if (oiUtils.contains(element[0], event.target, 'disabled')) return;
 
